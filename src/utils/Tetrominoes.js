@@ -68,9 +68,7 @@ export const randomTetromino = () => {
 
 export const rotate = ({ piece, direction }) => {
   // Transpose rows and columns
-  const newPiece = piece.map((_, index) =>
-    piece.map((col) => col[index])
-  );
+  const newPiece = piece.map((_, index) => piece.map((col) => col[index]));
 
   // Reverse rows to get a rotated matrix
   if (direction > 0) return newPiece.map((row) => row.reverse());

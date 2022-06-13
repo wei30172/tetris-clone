@@ -6,3 +6,4 @@ export { default as BoardCell} from './BoardCell';
 export { default as GameStats} from './GameStats';
 export { default as Previews} from './Previews';
 export { default as Preview} from './Preview';
+export { default as GameController} from './GameController';
