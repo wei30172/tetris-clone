@@ -5,7 +5,7 @@ import { rotate } from "../utils/Tetrominoes";
 export const movePlayer = ({ delta, position, shape, board }) => {
   const desiredNextPosition = {
     row: position.row + delta.row,
-    column: position.column + delta.column
+    col: position.col + delta.col
   };
 
   const collided = hasCollision({
@@ -48,21 +48,24 @@ const attemptRotation = ({ board, player, setPlayer }) => {
         shape
       }
     });
+  } else {
+    return;
   }
 };
 
 const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
-  const delta = { row: 0, column: 0 };
+  const delta = { row: 0, col: 0 };
   let isFastDropping = false;
 
+  // topLeft is 0 0, bottomRight is 20 10
   if (action === Action.FastDrop) {
     isFastDropping = true;
   } else if (action === Action.SlowDrop) {
     delta.row += 1;
   } else if (action === Action.Left) {
-    delta.column -= 1;
+    delta.col -= 1;
   } else if (action === Action.Right) {
-    delta.column += 1;
+    delta.col += 1;
   }
 
   const { collided, nextPosition } = movePlayer({

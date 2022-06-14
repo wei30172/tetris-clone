@@ -76,9 +76,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   }
 
   // If it collided, reset the player
-  if (player.collided || player.isFastDropping) {
-    resetPlayer();
-  }
+  if (player.collided || player.isFastDropping) resetPlayer();
 
   // Return the next board
   return {
@@ -89,16 +87,16 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
 
 export const hasCollision = ({ board, position, shape }) => {
   for (let y = 0; y < shape.length; y++) {
-    const row = y + position.row;
+    const row = position.row + y;
 
     for (let x = 0; x < shape[y].length; x++) {
       if (shape[y][x]) {
-        const column = x + position.column;
+        const col = position.col + x;
 
         if (
           board.builtBoard[row] &&
-          board.builtBoard[row][column] &&
-          board.builtBoard[row][column].occupied
+          board.builtBoard[row][col] &&
+          board.builtBoard[row][col].occupied
         ) {
           return true;
         }
@@ -111,11 +109,11 @@ export const hasCollision = ({ board, position, shape }) => {
 
 export const isWithinBoard = ({ board, position, shape }) => {
   for (let y = 0; y < shape.length; y++) {
-    const row = y + position.row;
+    const row = position.row + y;
 
     for (let x = 0; x < shape[y].length; x++) {
       if (shape[y][x]) {
-        const col = x + position.col;
+        const col = position.col + x;
         const isValidPosition = board.builtBoard[row] && board.builtBoard[row][col];
 
         if (!isValidPosition) return false;

@@ -67,13 +67,13 @@ export const randomTetromino = () => {
 };
 
 export const rotate = ({ piece, direction }) => {
-  // Transpose rows and columns
+  // console.log(piece);
+  // Transpose rows and columns => fisrt row -> first col ...
   const newPiece = piece.map((_, index) => piece.map((col) => col[index]));
 
   // Reverse rows to get a rotated matrix
-  if (direction > 0) return newPiece.map((row) => row.reverse());
-
-  return newPiece.reverse();
+  if (direction > 0) return newPiece.map((row) => row.reverse()); // clockwise
+  return newPiece.reverse(); // counterclockwise
 };
 
 export const transferToBoard = ({

@@ -17,7 +17,7 @@ const buildPlayer = (prev) => {
   return {
     collided: false,
     isFastDropping: false,
-    position: { row: 0, col: 4 },
+    position: { row: 0, col: 3 },
     tetrominoes,
     tetromino: tetrominoes.pop()
   };

@@ -25,9 +25,9 @@ const GameController = ({
     });
   };
 
-  // useInterval(() => {
-  //   handleInput({ action: Action.SlowDrop });
-  // }, dropTime);
+  useInterval(() => {
+    handleInput({ action: Action.SlowDrop });
+  }, dropTime);
 
   const onKeyUp = ({ code }) => {
     // console.log(code);
@@ -40,11 +40,7 @@ const GameController = ({
     const action = actionForKey(code);
 
     if (action === Action.Pause) {
-      if (dropTime) {
-        pauseDropTime();
-      } else {
-        resumeDropTime();
-      }
+        dropTime ? pauseDropTime() : resumeDropTime();
     } else if (action === Action.Quit) {
       setGameOver(true);
     } else {

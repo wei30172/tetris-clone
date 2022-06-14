@@ -14,8 +14,8 @@ export const useInterval = (callback, delay) => {
       savedCallback.current();
     }
     if (delay !== null) {
-      const id = setInterval(tick, delay);
-      return () => clearInterval(id);
+      const move = setInterval(tick, delay);
+      return () => clearInterval(move);
     }
   }, [delay]);
 };
