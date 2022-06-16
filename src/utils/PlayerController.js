@@ -48,9 +48,7 @@ const attemptRotation = ({ board, player, setPlayer }) => {
         shape
       }
     });
-  } else {
-    return;
-  }
+  };
 };
 
 const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
@@ -77,7 +75,9 @@ const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
 
   // Did we collide immediately
   const isGameOver = collided && player.position.row === 0;
-  if (isGameOver) setGameOver(isGameOver);
+  if (isGameOver) {
+    setGameOver(isGameOver);
+  }
 
   setPlayer({
     ...player,

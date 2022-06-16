@@ -16,11 +16,14 @@ const findDropPosition = ({ board, position, shape }) => {
   let row = 0;
 
   for (let i = 0; i < max; i++) {
-    const delta = { row: i, column: 0 };
+    const delta = { row: i, col: 0 };
     const result = movePlayer({ delta, position, shape, board });
     const { collided } = result;
 
-    if (collided) break;
+    if (collided) {
+      break;
+    }
+    
     row = position.row + i;
   }
 
@@ -32,11 +35,16 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
 
   let builtBoard = board.builtBoard.map((row) => row.map((cell) => (cell.occupied ? cell : { ...defaultCell })))
 
-  const dropPosition = findDropPosition({ board, position, shape: tetromino.shape })
+  // Drop position
+  const dropPosition = findDropPosition({
+    board,
+    position,
+    shape: tetromino.shape
+  });
 
-  // Place shadow
+  // Place ghost
   const className = `${tetromino.className} ${
-    player.isFastDropping ? "" : "shadow"
+    player.isFastDropping ? "" : "ghost"
   }`;
 
   builtBoard = transferToBoard({

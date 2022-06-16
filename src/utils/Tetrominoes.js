@@ -83,16 +83,26 @@ export const transferToBoard = ({
   isOccupied,
   position
 }) => {
-  shape.forEach((row, y) => {
-    row.forEach((cell, x) => {
+  // shape.forEach((row, y) => {
+  //   row.forEach((cell, x) => {
+  //     if (cell) {
+  //       const occupied = isOccupied;
+  //       const _y = position.row + y;
+  //       const _x = position.col + x;
+  //       builtBoard[_y][_x] = { occupied, className };
+  //     }
+  //   });
+  // });
+  for (const [y, row] of shape.entries()) {
+    for (const [x, cell] of row.entries()) {
       if (cell) {
         const occupied = isOccupied;
         const _y = position.row + y;
         const _x = position.col + x;
         builtBoard[_y][_x] = { occupied, className };
-      }
-    });
-  });
 
+      }
+    }
+  }
   return builtBoard;
 };

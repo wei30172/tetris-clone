@@ -29,12 +29,6 @@ const GameController = ({
     handleInput({ action: Action.SlowDrop });
   }, dropTime);
 
-  const onKeyUp = ({ code }) => {
-    // console.log(code);
-    const action = actionForKey(code);
-    if (actionIsDrop(action)) resumeDropTime();
-  };
-
   const onKeyDown = ({ code }) => {
     // console.log(code);
     const action = actionForKey(code);
@@ -48,6 +42,12 @@ const GameController = ({
       if (!dropTime) return;
       handleInput({ action });
     }
+  };
+
+  const onKeyUp = ({ code }) => {
+    // console.log(code);
+    const action = actionForKey(code);
+    if (actionIsDrop(action)) resumeDropTime();
   };
 
   return (

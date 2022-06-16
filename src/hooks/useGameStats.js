@@ -28,7 +28,7 @@ export const useGameStats = () => {
         points
       };
     });
-  }, [])
+  }, []);
 
   return [gameStats, addLinesCleared];
 }
