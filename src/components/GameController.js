@@ -1,4 +1,5 @@
 import "./GameController.scss";
+import { useRef, useEffect } from "react";
 
 import { Action, actionForKey, actionIsDrop } from "../utils/Input";
 import { playerController } from "../utils/PlayerController";
@@ -13,6 +14,14 @@ const GameController = ({
   setPlayer,
   setGameOver,
 }) => {
+  const inputElement = useRef(null);
+
+  useEffect(() => {
+    if (inputElement.current) {
+      inputElement.current.focus();
+    }
+  }, []);
+
   const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({ gameStats });
 
   const handleInput = ({ action }) => {
@@ -51,10 +60,11 @@ const GameController = ({
   };
 
   return (
-    <input
-      className="GameController"
-      type="text"
-      autoFocus
+    <div
+      className="gameController"
+      ref={inputElement}
+      role="button"
+      tabIndex="0"
       onKeyDown={onKeyDown}
       onKeyUp={onKeyUp}
     />

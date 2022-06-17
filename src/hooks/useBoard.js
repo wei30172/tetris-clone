@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 
 import { buildBoard, nextBoard } from "../utils/Board";
 
+const Board_WIDTH = 20;
+const Board_Height = 10;
+
 export const useBoard = ({
-  rows,
-  cols,
+  rows = Board_WIDTH,
+  cols = Board_Height,
   player,
   resetPlayer,
   addLinesCleared

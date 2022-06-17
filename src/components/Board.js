@@ -8,7 +8,7 @@ const Board = ({ board }) => {
   };
 
   return (
-    <div className="Board" style={boardStyles}>
+    <div className="board" style={boardStyles}>
       {board.builtBoard.map((row, y) =>
         row.map((cell, x) => <BoardCell key={x * board.size.cols + x} cell={cell} />)
       )}

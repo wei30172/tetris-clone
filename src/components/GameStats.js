@@ -1,17 +1,16 @@
 import './GameStats.scss'
 
 const GameStats = ({ gameStats }) => {
-  const { level, points, linesCompleted, linesPerLevel } = gameStats;
-  const linesToLevel = linesPerLevel - linesCompleted;
+  const { level, score, linesCompleted, linesPerLevel } = gameStats;
 
   return (
-    <ul className="GameStats">
-      <li>Level</li>
+    <ul className="gameStats">
+      <li>SCORE</li>
+      <li className="value">{score}</li>
+      <li>ROWS</li>
+      <li className="value">{linesCompleted}/{linesPerLevel}</li>
+      <li>LEVEL</li>
       <li className="value">{level}</li>
-      <li>Lines to level</li>
-      <li className="value">{linesToLevel}</li>
-      <li>Points</li>
-      <li className="value">{points}</li>
     </ul>
   )
 }

@@ -1,4 +1,10 @@
-.GameController {
+.gameController {
   position: absolute;
-  top: -100em;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  &:focus {
+    outline: none;
+  }
 }

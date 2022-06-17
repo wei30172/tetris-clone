@@ -1,9 +1,9 @@
 import './Menu.scss';
 
-const Menu = ({ onClick }) => {
+const Menu = ({ start }) => {
   return (
-    <div className="Menu">
-      <button className="btn" onClick={onClick}>Play Tetris</button>
+    <div className="menu">
+      <button className="btn" onClick={start}>Play Tetris</button>
     </div>
   )
 }

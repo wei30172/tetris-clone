@@ -1,17 +1,18 @@
+import './Game.scss'
 import { Menu, Tetris } from './index';
 import { useGameOver } from '../hooks/useGameOver';
 
-const Game = ({ rows, cols }) => {
+const Game = () => {
   const [gameOver, setGameOver, resetGameOver] = useGameOver();
 
   const start = () => resetGameOver();
 
   return (
-    <div className="Game">
+    <div className="game">
       {gameOver ? (
-        <Menu onClick={start}/>
+        <Menu start={start}/>
       ) : (
-        <Tetris rows={20} cols={10} setGameOver={setGameOver}/>
+        <Tetris setGameOver={setGameOver}/>
       )}
       
     </div>

@@ -1,0 +1,19 @@
+.guide{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2vw;
+  list-style-type: none;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  .value {
+    font-size: .8rem;
+    margin-bottom: 1em;
+  }
+}

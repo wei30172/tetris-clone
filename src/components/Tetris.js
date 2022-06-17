@@ -1,26 +1,27 @@
 import './Tetris.scss';
-import { Board, GameStats, Previews, GameController } from './index';
+import { Board, GameStats, Previews, GameController, Guide } from './index';
 
 import { useBoard } from '../hooks/useBoard';
 import { useGameStats } from '../hooks/useGameStats';
 import { usePlayer } from "../hooks/usePlayer";
 
-const Tetris = ({ rows, cols, setGameOver }) => {
+
+const Tetris = ({ setGameOver }) => {
   const [gameStats, addLinesCleared] = useGameStats();
   const [player, setPlayer, resetPlayer] = usePlayer();
   const [board] = useBoard({
-    rows,
-    cols,
     player,
     resetPlayer,
     addLinesCleared
   });
 
   return (
-    <div className="Tetris">
+    <div className="tetris"
+    >
       <Board board={board}/>
       <GameStats gameStats={gameStats} />
       <Previews tetrominoes={player.tetrominoes} />
+      <Guide />
       <GameController
         board={board}
         gameStats={gameStats}

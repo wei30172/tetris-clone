@@ -7,3 +7,4 @@ export { default as GameStats} from './GameStats';
 export { default as Previews} from './Previews';
 export { default as Preview} from './Preview';
 export { default as GameController} from './GameController';
+export { default as Guide} from './Guide';
