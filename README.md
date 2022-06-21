@@ -1,3 +1,7 @@
+# Reference
+[Build Tetris with JavaScript and React](https://www.youtube.com/watch?v=yCEIgEOZ36g)
+[React Tetris with Typescript](https://www.youtube.com/watch?v=jEjj2jvHpv4)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
