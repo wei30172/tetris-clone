@@ -55,7 +55,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     position: dropPosition,
   });
 
-  // Place the piece:　If it collided, mark the board cells as collided
+  // If it collided, mark the board cells as collided
   if (!player.isFastDropping) {
     builtBoard = transferToBoard({
       builtBoard,
