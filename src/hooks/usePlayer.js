@@ -7,7 +7,7 @@ const buildPlayer = (prev) => {
 
   if (prev) {
     tetrominoes = [...prev.tetrominoes];
-    tetrominoes.unshift(randomTetromino());
+    tetrominoes.unshift(randomTetromino()); // [1, 2, 3, 4] => [5, 1, 2, 3, 4]
   } else {
     tetrominoes = Array(5).fill(0).map((_) => randomTetromino());
   }
