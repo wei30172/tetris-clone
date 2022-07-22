@@ -30,7 +30,7 @@ const GameController = ({
       board,
       player,
       setPlayer,
-      setGameOver
+      setGameOver,
     });
   };
 
@@ -43,7 +43,7 @@ const GameController = ({
     const action = actionForKey(code);
 
     if (action === Action.Pause) {
-        dropTime ? pauseDropTime() : resumeDropTime();
+      dropTime ? pauseDropTime() : resumeDropTime();
     } else if (action === Action.Quit) {
       setGameOver(true);
     } else {
@@ -69,6 +69,6 @@ const GameController = ({
       onKeyUp={onKeyUp}
     />
   );
-}
+};
 
-export default GameController
+export default GameController;

@@ -1,19 +1,21 @@
-import './Board.scss'
-import { BoardCell } from './index';
+import "./Board.scss";
+import { BoardCell } from "./index";
 
 const Board = ({ board }) => {
   const boardStyles = {
     gridTemplateRows: `repeat(${board.size.rows}, 1fr)`,
-    gridTemplateColumns: `repeat(${board.size.cols}, 1fr)`
+    gridTemplateColumns: `repeat(${board.size.cols}, 1fr)`,
   };
 
   return (
     <div className="board" style={boardStyles}>
       {board.builtBoard.map((row, y) =>
-        row.map((cell, x) => <BoardCell key={x * board.size.cols + x} cell={cell} />)
+        row.map((cell, x) => (
+          <BoardCell key={x * board.size.cols + x} cell={cell} />
+        )),
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Board
+export default Board;

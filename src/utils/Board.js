@@ -1,15 +1,17 @@
-import { defaultCell } from './Cell';
+import { defaultCell } from "./Cell";
 import { movePlayer } from "./PlayerController";
 import { transferToBoard } from "./Tetrominoes";
 
 export const buildBoard = ({ rows, cols }) => {
-  const builtBoard = Array.from({ length: rows }, () =>  Array.from({ length: cols }, () => ({ ...defaultCell })))
+  const builtBoard = Array.from({ length: rows }, () =>
+    Array.from({ length: cols }, () => ({ ...defaultCell })),
+  );
 
   return {
     builtBoard,
-    size: { rows, cols }
-  }
-}
+    size: { rows, cols },
+  };
+};
 
 const findDropPosition = ({ board, position, shape }) => {
   let max = board.size.rows - position.row + 1;
@@ -23,7 +25,7 @@ const findDropPosition = ({ board, position, shape }) => {
     if (collided) {
       break;
     }
-    
+
     row = position.row + i;
   }
 
@@ -33,13 +35,15 @@ const findDropPosition = ({ board, position, shape }) => {
 export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   const { tetromino, position } = player;
 
-  let builtBoard = board.builtBoard.map((row) => row.map((cell) => (cell.occupied ? cell : { ...defaultCell })))
+  let builtBoard = board.builtBoard.map((row) =>
+    row.map((cell) => (cell.occupied ? cell : { ...defaultCell })),
+  );
 
   // Drop position
   const dropPosition = findDropPosition({
     board,
     position,
-    shape: tetromino.shape
+    shape: tetromino.shape,
   });
 
   // Place ghost
@@ -62,7 +66,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
       shape: tetromino.shape,
       className: tetromino.className,
       isOccupied: player.collided,
-      position
+      position,
     });
   }
 
@@ -89,9 +93,9 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   // Return the next board
   return {
     builtBoard,
-    size: { ...board.size }
+    size: { ...board.size },
   };
-}
+};
 
 export const hasCollision = ({ board, position, shape }) => {
   for (let y = 0; y < shape.length; y++) {
@@ -122,7 +126,8 @@ export const isWithinBoard = ({ board, position, shape }) => {
     for (let x = 0; x < shape[y].length; x++) {
       if (shape[y][x]) {
         const col = position.col + x;
-        const isValidPosition = board.builtBoard[row] && board.builtBoard[row][col];
+        const isValidPosition =
+          board.builtBoard[row] && board.builtBoard[row][col];
 
         if (!isValidPosition) return false;
       }

@@ -1,10 +1,9 @@
-import './Tetris.scss';
-import { Board, GameStats, Previews, GameController, Guide } from './index';
+import "./Tetris.scss";
+import { Board, GameStats, Previews, GameController, Guide } from "./index";
 
-import { useBoard } from '../hooks/useBoard';
-import { useGameStats } from '../hooks/useGameStats';
+import { useBoard } from "../hooks/useBoard";
+import { useGameStats } from "../hooks/useGameStats";
 import { usePlayer } from "../hooks/usePlayer";
-
 
 const Tetris = ({ setGameOver }) => {
   const [gameStats, addLinesCleared] = useGameStats();
@@ -12,13 +11,12 @@ const Tetris = ({ setGameOver }) => {
   const [board] = useBoard({
     player,
     resetPlayer,
-    addLinesCleared
+    addLinesCleared,
   });
 
   return (
-    <div className="tetris"
-    >
-      <Board board={board}/>
+    <div className="tetris">
+      <Board board={board} />
       <GameStats gameStats={gameStats} />
       <Previews tetrominoes={player.tetrominoes} />
       <Guide />
@@ -30,7 +28,7 @@ const Tetris = ({ setGameOver }) => {
         setGameOver={setGameOver}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Tetris
+export default Tetris;

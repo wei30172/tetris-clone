@@ -5,19 +5,19 @@ import { rotate } from "../utils/Tetrominoes";
 export const movePlayer = ({ delta, position, shape, board }) => {
   const desiredNextPosition = {
     row: position.row + delta.row,
-    col: position.col + delta.col
+    col: position.col + delta.col,
   };
 
   const collided = hasCollision({
     board,
     position: desiredNextPosition,
-    shape
+    shape,
   });
 
   const isOnBoard = isWithinBoard({
     board,
     position: desiredNextPosition,
-    shape
+    shape,
   });
 
   const preventMove = !isOnBoard || (isOnBoard && collided);
@@ -32,7 +32,7 @@ export const movePlayer = ({ delta, position, shape, board }) => {
 const attemptRotation = ({ board, player, setPlayer }) => {
   const shape = rotate({
     piece: player.tetromino.shape,
-    direction: 1
+    direction: 1,
   });
 
   const position = player.position;
@@ -45,10 +45,10 @@ const attemptRotation = ({ board, player, setPlayer }) => {
       ...player,
       tetromino: {
         ...player.tetromino,
-        shape
-      }
+        shape,
+      },
     });
-  };
+  }
 };
 
 const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
@@ -70,7 +70,7 @@ const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
     delta,
     position: player.position,
     shape: player.tetromino.shape,
-    board
+    board,
   });
 
   // Did we collide immediately
@@ -83,7 +83,7 @@ const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
     ...player,
     collided,
     isFastDropping,
-    position: nextPosition
+    position: nextPosition,
   });
 };
 
@@ -92,7 +92,7 @@ export const playerController = ({
   board,
   player,
   setPlayer,
-  setGameOver
+  setGameOver,
 }) => {
   if (!action) return;
 

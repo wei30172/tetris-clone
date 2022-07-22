@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "./Preview.scss";
 import { buildBoard } from "../utils/Board";
 import { transferToBoard } from "../utils/Tetrominoes";
@@ -23,10 +23,14 @@ const Preview = ({ tetromino, index }) => {
   return (
     <div className="preview" style={style}>
       <div className="preview-board">
-        {board.builtBoard.map((row, y) => row.map((cell, x) => <BoardCell key={x * board.size.cols + x} cell={cell} />))}
+        {board.builtBoard.map((row, y) =>
+          row.map((cell, x) => (
+            <BoardCell key={x * board.size.cols + x} cell={cell} />
+          )),
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default React.memo(Preview);

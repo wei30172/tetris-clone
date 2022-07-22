@@ -4,7 +4,7 @@ const buildGameStats = () => ({
   level: 1,
   linesCompleted: 0,
   linesPerLevel: 10,
-  score: 0
+  score: 0,
 });
 
 export const useGameStats = () => {
@@ -16,19 +16,17 @@ export const useGameStats = () => {
       const { linesPerLevel } = perv;
       const newLinesCompleted = perv.linesCompleted + lines;
       const level =
-        newLinesCompleted >= linesPerLevel
-          ? perv.level + 1
-          : perv.level;
+        newLinesCompleted >= linesPerLevel ? perv.level + 1 : perv.level;
       const linesCompleted = newLinesCompleted % linesPerLevel;
-  
+
       return {
         level,
         linesCompleted,
         linesPerLevel,
-        score
+        score,
       };
     });
   }, []);
 
   return [gameStats, addLinesCleared];
-}
+};

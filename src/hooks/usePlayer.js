@@ -9,7 +9,9 @@ const buildPlayer = (prev) => {
     tetrominoes = [...prev.tetrominoes];
     tetrominoes.unshift(randomTetromino()); // [1, 2, 3, 4] => [5, 1, 2, 3, 4]
   } else {
-    tetrominoes = Array(5).fill(0).map((_) => randomTetromino());
+    tetrominoes = Array(5)
+      .fill(0)
+      .map((_) => randomTetromino());
   }
 
   return {
@@ -17,14 +19,17 @@ const buildPlayer = (prev) => {
     isFastDropping: false,
     position: { row: 0, col: 3 },
     tetrominoes,
-    tetromino: tetrominoes.pop()
+    tetromino: tetrominoes.pop(),
   };
 };
 
 export const usePlayer = () => {
   const [player, setPlayer] = useState(buildPlayer());
 
-  const resetPlayer = useCallback(() => setPlayer((prev) => buildPlayer(prev)), []);
+  const resetPlayer = useCallback(
+    () => setPlayer((prev) => buildPlayer(prev)),
+    [],
+  );
 
   return [player, setPlayer, resetPlayer];
 };

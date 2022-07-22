@@ -1,8 +1,7 @@
-import './App.scss';
-import { Game } from './components';
+import "./App.scss";
+import { Game } from "./components";
 
 function App() {
-
   return (
     <div className="App">
       <Game />

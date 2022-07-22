@@ -1,4 +1,4 @@
-import './guide.scss';
+import "./guide.scss";
 
 const Guide = () => {
   return (
@@ -11,7 +11,7 @@ const Guide = () => {
       <li className="value">(Q)Quit</li>
       <li className="value">(P)Pause</li>
     </ul>
-  )
-}
+  );
+};
 
-export default Guide
+export default Guide;
