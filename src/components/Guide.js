@@ -1,4 +1,4 @@
-import "./guide.scss";
+import "./Guide.scss";
 
 const Guide = () => {
   return (
