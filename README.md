@@ -1,6 +1,8 @@
 ## React.js Based Tetris Game
 
-Implement a Tetris clone with JavaScript and React.js. Automatic deploy App from GitHub to AWS S3 using CodeBuild.
+Implement a Tetris clone with JavaScript and React.js. Automatic deploy App from GitHub to AWS S3 using CodeBuild.\
+1.Build features using React hooks like useState, useEffect, useRef, useCallback, and custom hooks.\
+2.Automatic deploy App from GitHub to AWS S3 using CodeBuild.
 
 ## Project Screenshots
 ![react-tetris2](https://user-images.githubusercontent.com/60259324/181649813-bd2c3444-79ec-4f09-8504-902280ec7245.png)
