@@ -2,7 +2,9 @@ import { defaultCell } from "./Cell";
 import { movePlayer } from "./PlayerController";
 import { transferToBoard } from "./Tetrominoes";
 
+// For build Preview component (4*4) and Board component (20*10)
 export const buildBoard = ({ rows, cols }) => {
+  // The Array.from() creates a new, shallow-copied Array
   const builtBoard = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => ({ ...defaultCell })),
   );
@@ -13,10 +15,12 @@ export const buildBoard = ({ rows, cols }) => {
   };
 };
 
+// Find out where to drop
 const findDropPosition = ({ board, position, shape }) => {
   let max = board.size.rows - position.row + 1;
   let row = 0;
 
+  // Find out where the collision occurred
   for (let i = 0; i < max; i++) {
     const delta = { row: i, col: 0 };
     const result = movePlayer({ delta, position, shape, board });
@@ -39,18 +43,19 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     row.map((cell) => (cell.occupied ? cell : { ...defaultCell })),
   );
 
-  // Drop position
+  // Find drop position
   const dropPosition = findDropPosition({
     board,
     position,
     shape: tetromino.shape,
   });
 
-  // Place ghost
+  // If it's fastDropping, not show the ghost
   const className = `${tetromino.className} ${
     player.isFastDropping ? "" : "ghost"
   }`;
 
+  // Place ghost (Drop position preview)
   builtBoard = transferToBoard({
     builtBoard,
     shape: tetromino.shape,
@@ -59,7 +64,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     position: dropPosition,
   });
 
-  // If it collided, mark the board cells as collided
+  // If it is not fastDropping but collided, mark the board cells as collided
   if (!player.isFastDropping) {
     builtBoard = transferToBoard({
       builtBoard,
@@ -73,6 +78,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   // Check for cleared lines
   const blankRow = builtBoard[0].map((_) => ({ ...defaultCell }));
   let linesCleared = 0;
+  // keep incomplete rows. Not keep the completed rows, add the blank rows to the top instead
   builtBoard = builtBoard.reduce((acc, row) => {
     if (row.every((col) => col.occupied)) {
       linesCleared++;
@@ -84,6 +90,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   }, []);
 
   if (linesCleared > 0) {
+    // Steps after completing a line
     addLinesCleared(linesCleared);
   }
 
@@ -97,7 +104,9 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   };
 };
 
+// Check if Collision occurs
 export const hasCollision = ({ board, position, shape }) => {
+  // Within the range of the Board, and each Cell has not been occupied
   for (let y = 0; y < shape.length; y++) {
     const row = position.row + y;
 
@@ -119,7 +128,9 @@ export const hasCollision = ({ board, position, shape }) => {
   return false;
 };
 
+// Check if tetromino is inside the board boundary
 export const isWithinBoard = ({ board, position, shape }) => {
+  // Check every position of tetrominoes cell, their row and column not out of the board boundary
   for (let y = 0; y < shape.length; y++) {
     const row = position.row + y;
 

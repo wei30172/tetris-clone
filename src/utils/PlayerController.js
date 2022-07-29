@@ -1,19 +1,22 @@
 import { hasCollision, isWithinBoard } from "./Board";
 import { Action } from "./Input";
-import { rotate } from "../utils/Tetrominoes";
+import { rotate } from "./Tetrominoes";
 
+// Move the current tetromino
 export const movePlayer = ({ delta, position, shape, board }) => {
   const desiredNextPosition = {
     row: position.row + delta.row,
     col: position.col + delta.col,
   };
 
+  // Check if Collision occurs
   const collided = hasCollision({
     board,
     position: desiredNextPosition,
     shape,
   });
 
+  // Check if tetromino is inside the board boundary
   const isOnBoard = isWithinBoard({
     board,
     position: desiredNextPosition,
@@ -23,12 +26,13 @@ export const movePlayer = ({ delta, position, shape, board }) => {
   const preventMove = !isOnBoard || (isOnBoard && collided);
   const nextPosition = preventMove ? position : desiredNextPosition;
 
-  const isMovingDown = delta.row > 0;
+  const isMovingDown = delta.row > 0; // Because the preset position of the tetromino is at row 0
   const isHit = isMovingDown && (collided || !isOnBoard);
 
   return { collided: isHit, nextPosition };
 };
 
+// Check the rotated tetromino, if it is valid then rotate the tetromino
 const attemptRotation = ({ board, player, setPlayer }) => {
   const shape = rotate({
     piece: player.tetromino.shape,
@@ -51,11 +55,12 @@ const attemptRotation = ({ board, player, setPlayer }) => {
   }
 };
 
+// Check the moved tetromino, if it is valid then move the tetromino
 const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
   const delta = { row: 0, col: 0 };
   let isFastDropping = false;
 
-  // topLeft is 0 0, bottomRight is 20 10
+  // position of top-left is [0, 0], bottom-right is [20, 10]
   if (action === Action.FastDrop) {
     isFastDropping = true;
   } else if (action === Action.SlowDrop) {
@@ -73,7 +78,7 @@ const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
     board,
   });
 
-  // Did we collide immediately
+  // If collide immediately then GameOver
   const isGameOver = collided && player.position.row === 0;
   if (isGameOver) {
     setGameOver(isGameOver);
@@ -87,6 +92,7 @@ const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
   });
 };
 
+// The current tetromino controller: move and rotate the tetromino
 export const playerController = ({
   action,
   board,

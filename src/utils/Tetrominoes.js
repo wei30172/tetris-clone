@@ -1,5 +1,6 @@
 const className = "tetromino";
 
+//  All tetromino shapes
 export const TETROMINOES = {
   I: {
     shape: [
@@ -59,6 +60,7 @@ export const TETROMINOES = {
   },
 };
 
+// Generate random tetromino
 export const randomTetromino = () => {
   const keys = Object.keys(TETROMINOES);
   const index = Math.floor(Math.random() * keys.length);
@@ -66,15 +68,17 @@ export const randomTetromino = () => {
   return TETROMINOES[key];
 };
 
+// Rotate tetromino (clockwise / counterclockwise)
 export const rotate = ({ piece, direction }) => {
   // Transpose rows and columns => fisrt row -> first col ...
   const newPiece = piece.map((_, index) => piece.map((col) => col[index]));
 
   // Reverse rows to get a rotated matrix
   if (direction > 0) return newPiece.map((row) => row.reverse()); // clockwise
-  return newPiece.reverse(); // counterclockwise
+  return newPiece.reverse(); // counterclockwise (game default setting)
 };
 
+// Mark tetromino shape cell
 export const transferToBoard = ({
   builtBoard,
   shape,
@@ -88,6 +92,7 @@ export const transferToBoard = ({
         const occupied = isOccupied;
         const _y = position.row + y;
         const _x = position.col + x;
+        // Cell is occupied and give it styles
         builtBoard[_y][_x] = { occupied, className };
       }
     }

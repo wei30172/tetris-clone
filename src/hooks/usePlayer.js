@@ -14,6 +14,7 @@ const buildPlayer = (prev) => {
       .map((_) => randomTetromino());
   }
 
+  // default settings
   return {
     collided: false,
     isFastDropping: false,

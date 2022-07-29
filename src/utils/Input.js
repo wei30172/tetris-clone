@@ -1,3 +1,4 @@
+// All keyboard events
 export const Action = {
   Left: "Left",
   Right: "Right",
